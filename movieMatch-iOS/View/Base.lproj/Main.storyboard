@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="522" y="769"/>
         </scene>
-        <!--Home-->
+        <!--HomeViewController-->
         <scene sceneID="4k7-nj-EGG">
             <objects>
-                <viewController id="pqD-8u-PcQ" sceneMemberID="viewController">
+                <viewController title="HomeViewController" id="pqD-8u-PcQ" customClass="HomeViewController" customModule="movieMatch_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7MH-1o-Q3d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,6 +100,11 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="VwJ-K6-HQq"/>
+                    <connections>
+                        <outlet property="movieCollectionView" destination="1gf-Ia-oct" id="BuD-0k-MRW"/>
+                        <outlet property="searchBar" destination="HjG-fK-5w0" id="0Jv-YI-r7E"/>
+                        <outlet property="titleLabel" destination="k59-Mg-mh3" id="WTe-HT-T6m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EAY-eV-lDw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
