@@ -17,10 +17,15 @@ class GenreCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with imageURL: URL?) {
+    func configureImage(with imageURL: URL?) {
         movieImage.kf.setImage(with: imageURL)
         movieImage.contentMode = .scaleAspectFill
         movieImage.clipsToBounds = true
+    }
+    
+    func configureTitle(with titleLabel: String?){
+        movieTitleLabel.text = titleLabel
+        movieTitleLabel.font = UIFont(name: "Sunflower-Light", size: 15.0)
     }
     
 }
