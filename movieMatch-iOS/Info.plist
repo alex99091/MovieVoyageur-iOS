@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>X-Naver-Client-Secret</key>
-	<string>PFXU2Mm0o1vNQxThul_3</string>
-	<key>X-Naver-Client-Id</key>
 	<string>76cQEm_l56</string>
+	<key>X-Naver-Client-Id</key>
+	<string>PFXU2Mm0o1vNQxThul_3</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -25,5 +25,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Sunflower-Light.ttf</string>
+		<string>Sunflower-Medium.ttf</string>
+		<string>Sunflower-Bold.ttf</string>
+	</array>
 </dict>
 </plist>

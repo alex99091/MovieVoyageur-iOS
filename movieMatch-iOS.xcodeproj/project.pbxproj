@@ -15,6 +15,15 @@
 		2616CCCC29B0C6AA00897221 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2616CCCB29B0C6AA00897221 /* RxSwift */; };
 		2616CCCF29B0D47400897221 /* MovieAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2616CCCE29B0D47400897221 /* MovieAPI.swift */; };
 		2616CCD229B0DAD000897221 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2616CCD129B0DAD000897221 /* APIKey.swift */; };
+		266CBA0C29B1BDA3003E5F66 /* GenreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 266CBA0B29B1BDA3003E5F66 /* GenreCell.xib */; };
+		266CBA0E29B1BE84003E5F66 /* GenreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266CBA0D29B1BE84003E5F66 /* GenreCell.swift */; };
+		266CBA1029B1BF13003E5F66 /* Nibbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266CBA0F29B1BF13003E5F66 /* Nibbed.swift */; };
+		266CBA1229B1BF27003E5F66 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266CBA1129B1BF27003E5F66 /* ReuseIdentifiable.swift */; };
+		269E937229B1D4A200697705 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E937129B1D4A200697705 /* UIImage.swift */; };
+		269E937729B1DB3700697705 /* Sunflower-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269E937429B1DB3700697705 /* Sunflower-Light.ttf */; };
+		269E937829B1DB3700697705 /* Sunflower-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269E937529B1DB3700697705 /* Sunflower-Bold.ttf */; };
+		269E937929B1DB3700697705 /* Sunflower-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 269E937629B1DB3700697705 /* Sunflower-Medium.ttf */; };
+		269E937C29B1E23000697705 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 269E937B29B1E23000697705 /* Kingfisher */; };
 		26B3125529AFA10F00FFC268 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B3125429AFA10F00FFC268 /* AppDelegate.swift */; };
 		26B3125729AFA10F00FFC268 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B3125629AFA10F00FFC268 /* SceneDelegate.swift */; };
 		26B3125929AFA10F00FFC268 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B3125829AFA10F00FFC268 /* MainTabBarController.swift */; };
@@ -30,6 +39,14 @@
 		2616CCC429B0C1BF00897221 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		2616CCCE29B0D47400897221 /* MovieAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAPI.swift; sourceTree = "<group>"; };
 		2616CCD129B0DAD000897221 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		266CBA0B29B1BDA3003E5F66 /* GenreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreCell.xib; sourceTree = "<group>"; };
+		266CBA0D29B1BE84003E5F66 /* GenreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCell.swift; sourceTree = "<group>"; };
+		266CBA0F29B1BF13003E5F66 /* Nibbed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nibbed.swift; sourceTree = "<group>"; };
+		266CBA1129B1BF27003E5F66 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		269E937129B1D4A200697705 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		269E937429B1DB3700697705 /* Sunflower-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sunflower-Light.ttf"; sourceTree = "<group>"; };
+		269E937529B1DB3700697705 /* Sunflower-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sunflower-Bold.ttf"; sourceTree = "<group>"; };
+		269E937629B1DB3700697705 /* Sunflower-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sunflower-Medium.ttf"; sourceTree = "<group>"; };
 		26B3125129AFA10F00FFC268 /* movieMatch-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "movieMatch-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B3125429AFA10F00FFC268 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26B3125629AFA10F00FFC268 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269E937C29B1E23000697705 /* Kingfisher in Frameworks */,
 				2616CCCC29B0C6AA00897221 /* RxSwift in Frameworks */,
 				2616CCCA29B0C6AA00897221 /* RxRelay in Frameworks */,
 				2616CCC829B0C6AA00897221 /* RxCocoa in Frameworks */,
@@ -84,8 +102,21 @@
 			isa = PBXGroup;
 			children = (
 				2616CCD129B0DAD000897221 /* APIKey.swift */,
+				266CBA0F29B1BF13003E5F66 /* Nibbed.swift */,
+				266CBA1129B1BF27003E5F66 /* ReuseIdentifiable.swift */,
+				269E937129B1D4A200697705 /* UIImage.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		269E937329B1DB3700697705 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				269E937429B1DB3700697705 /* Sunflower-Light.ttf */,
+				269E937529B1DB3700697705 /* Sunflower-Bold.ttf */,
+				269E937629B1DB3700697705 /* Sunflower-Medium.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		26B3124829AFA10F00FFC268 = {
@@ -135,6 +166,8 @@
 			children = (
 				26B3125A29AFA10F00FFC268 /* Main.storyboard */,
 				26B3125F29AFA11100FFC268 /* LaunchScreen.storyboard */,
+				266CBA0B29B1BDA3003E5F66 /* GenreCell.xib */,
+				266CBA0D29B1BE84003E5F66 /* GenreCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -142,6 +175,7 @@
 		26B3126A29AFA5DE00FFC268 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				269E937329B1DB3700697705 /* Font */,
 				26B3125D29AFA11100FFC268 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
@@ -167,6 +201,7 @@
 				2616CCC729B0C6AA00897221 /* RxCocoa */,
 				2616CCC929B0C6AA00897221 /* RxRelay */,
 				2616CCCB29B0C6AA00897221 /* RxSwift */,
+				269E937B29B1E23000697705 /* Kingfisher */,
 			);
 			productName = "movieMatch-iOS";
 			productReference = 26B3125129AFA10F00FFC268 /* movieMatch-iOS.app */;
@@ -198,6 +233,7 @@
 			mainGroup = 26B3124829AFA10F00FFC268;
 			packageReferences = (
 				2616CCC629B0C6AA00897221 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				269E937A29B1E23000697705 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 26B3125229AFA10F00FFC268 /* Products */;
 			projectDirPath = "";
@@ -215,7 +251,11 @@
 			files = (
 				26B3126129AFA11100FFC268 /* LaunchScreen.storyboard in Resources */,
 				26B3125E29AFA11100FFC268 /* Assets.xcassets in Resources */,
+				269E937929B1DB3700697705 /* Sunflower-Medium.ttf in Resources */,
 				26B3125C29AFA10F00FFC268 /* Main.storyboard in Resources */,
+				269E937729B1DB3700697705 /* Sunflower-Light.ttf in Resources */,
+				266CBA0C29B1BDA3003E5F66 /* GenreCell.xib in Resources */,
+				269E937829B1DB3700697705 /* Sunflower-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,11 +269,15 @@
 				26B3125929AFA10F00FFC268 /* MainTabBarController.swift in Sources */,
 				2616CCC029B0C11300897221 /* MovieResponse.swift in Sources */,
 				26B3125529AFA10F00FFC268 /* AppDelegate.swift in Sources */,
+				266CBA1029B1BF13003E5F66 /* Nibbed.swift in Sources */,
+				266CBA0E29B1BE84003E5F66 /* GenreCell.swift in Sources */,
 				2616CCCF29B0D47400897221 /* MovieAPI.swift in Sources */,
 				2616CCC229B0C12100897221 /* MovieItem.swift in Sources */,
 				26B3125729AFA10F00FFC268 /* SceneDelegate.swift in Sources */,
 				2616CCC529B0C1BF00897221 /* MovieViewModel.swift in Sources */,
 				2616CCD229B0DAD000897221 /* APIKey.swift in Sources */,
+				266CBA1229B1BF27003E5F66 /* ReuseIdentifiable.swift in Sources */,
+				269E937229B1D4A200697705 /* UIImage.swift in Sources */,
 				26B3126C29B0540100FFC268 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +510,14 @@
 				kind = branch;
 			};
 		};
+		269E937A29B1E23000697705 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -483,6 +535,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2616CCC629B0C6AA00897221 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		269E937B29B1E23000697705 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 269E937A29B1E23000697705 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

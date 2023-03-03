@@ -10,8 +10,7 @@ import RxSwift
 import RxCocoa
 
 enum MovieAPI {
-    static let baseUrl = "https://openapi.naver.com/v1/search/movie.json?"
-    static let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&genre=1"
+    static let baseUrl = "https://openapi.naver.com/v1/search/movie.json"
     
     enum ApiError: Error {
         case invalidURL
@@ -36,7 +35,9 @@ extension MovieAPI {
     
     static func fetchAPIResponse() -> Observable<Result<MovieListResponse<MovieItem>, ApiError>> {
         
-        let urlString = baseUrl + query
+        let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&genre=1"
+        
+        let urlString = baseUrl + "?" + query
         
         guard let url = URL(string: urlString) else {
             return Observable.just(.failure(ApiError.invalidURL))
@@ -44,8 +45,11 @@ extension MovieAPI {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "GET"
-        urlRequest.addValue(String(describing: Bundle.main.clientId), forHTTPHeaderField: "X-Naver-Client-Id: ")
-        urlRequest.addValue(String(describing: Bundle.main.clientSecret), forHTTPHeaderField: "X-Naver-Client-Secret: ")
+        guard let clientId: String = Bundle.main.clientId,
+              let clientSecret: String = Bundle.main.clientSecret else { return Observable.just(Result.failure(.unAuthorizedKey)) }
+        urlRequest.addValue(clientId, forHTTPHeaderField: "X-Naver-Client-Id")
+        urlRequest.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
+        
         
         return URLSession.shared.rx.response(request: urlRequest)
             .map { response, data in
@@ -66,5 +70,53 @@ extension MovieAPI {
             .catch { error in
                 return Observable.just(.failure(ApiError.unknownError(error)))
             }
+    }
+}
+
+extension MovieAPI {
+    static func test(completion: @escaping (Result<MovieListResponse<MovieItem>, ApiError>) -> Void) {
+        
+        let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&genre=1"
+        
+        let urlString = baseUrl + "?" + query
+        
+        guard let url = URL(string: urlString) else {
+            return completion(.failure(ApiError.invalidURL))
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        
+        urlRequest.httpMethod = "GET"
+        let clientId = Bundle.main.clientId!
+        let clientSecret = Bundle.main.clientSecret!
+        print("clientId: \(clientId), clientSecret: \(clientSecret)")
+        urlRequest.addValue(clientId, forHTTPHeaderField: "X-Naver-Client-Id")
+        urlRequest.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
+        
+        
+        URLSession.shared.dataTask(with: urlRequest) { data, urlResponse, error in
+            
+            guard let httpResponse = urlResponse as? HTTPURLResponse else {
+                print("bad status code")
+                return completion(.failure(ApiError.unknownError(error)))
+            }
+            
+            if let jsonData = data {
+                // convert data to our swift model
+                do {
+                    // JSON -> Struct 로 변경 즉 디코딩 즉 데이터 파싱
+                    let listResponse = try JSONDecoder().decode(MovieListResponse<MovieItem>.self, from: jsonData)
+                    
+                    // 상태 코드는 200인데 파싱한 데이터에 따라서 에러처리
+                    
+                    
+                    completion(.success(listResponse))
+                } catch {
+                    // decoding error
+                    completion(.failure(ApiError.decodingError))
+                }
+            }
+        }.resume()
+        
     }
 }
