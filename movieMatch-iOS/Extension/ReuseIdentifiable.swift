@@ -7,8 +7,6 @@
 
 import UIKit
 
-extension UICollectionViewCell: ReuseIdentifiable { }
-
 protocol ReuseIdentifiable {
     static var reuseIdentifier: String { get }
 }
@@ -18,3 +16,4 @@ extension ReuseIdentifiable {
         return String(describing: Self.self)
     }
 }
+

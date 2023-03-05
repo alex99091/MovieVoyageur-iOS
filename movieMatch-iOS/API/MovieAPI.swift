@@ -33,10 +33,10 @@ enum MovieAPI {
 
 extension MovieAPI {
     
-    static func fetchAPIResponse() -> Observable<Result<MovieListResponse<MovieItem>, ApiError>> {
+    // 국가별로 영화 검색하기
+    static func searchbyNation(nation: String) -> Observable<Result<MovieListResponse<MovieItem>, ApiError>> {
         
-        let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&genre=1"
-        
+        let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&country=\(nation)"
         let urlString = baseUrl + "?" + query
         
         guard let url = URL(string: urlString) else {
@@ -71,4 +71,45 @@ extension MovieAPI {
                 return Observable.just(.failure(ApiError.unknownError(error)))
             }
     }
+    
+    // 장르로 영화 검색하기
+    static func searchbyGenre(genre: String) -> Observable<Result<MovieListResponse<MovieItem>, ApiError>> {
+        
+        let query =  "query=%EC%A3%BC%EC%8B%9D&display=10&start=1&genre=\(genre)"
+        let urlString = baseUrl + "?" + query
+        
+        guard let url = URL(string: urlString) else {
+            return Observable.just(.failure(ApiError.invalidURL))
+        }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "GET"
+        guard let clientId: String = Bundle.main.clientId,
+              let clientSecret: String = Bundle.main.clientSecret else { return Observable.just(Result.failure(.unAuthorizedKey)) }
+        urlRequest.addValue(clientId, forHTTPHeaderField: "X-Naver-Client-Id")
+        urlRequest.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
+        
+        
+        return URLSession.shared.rx.response(request: urlRequest)
+            .map { response, data in
+                if response.statusCode == 200 {
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(MovieListResponse<MovieItem>.self, from: data)
+                        return .success(result)
+                    } catch {
+                        return .failure(ApiError.decodingError)
+                    }
+                } else if response.statusCode == 401 {
+                    return .failure(ApiError.unAuthorizedKey)
+                } else {
+                    return .failure(ApiError.networkError)
+                }
+            }
+            .catch { error in
+                return Observable.just(.failure(ApiError.unknownError(error)))
+            }
+    }
+    
+    
 }

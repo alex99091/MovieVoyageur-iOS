@@ -1,5 +1,5 @@
 //
-//  MovieViewModel.swift
+//  MovieSearchByGenreViewModel.swift
 //  movieMatch-iOS
 //
 //  Created by BOONGKI KWAK on 2023/03/02.
@@ -9,13 +9,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MovieViewModel {
+class MovieSearchByGenreViewModel {
     
     let movieList: Driver<[MovieItem]>
+    let genre: String = "1"
     private let disposeBag = DisposeBag()
     
     init() {
-        let apiResponse = MovieAPI.fetchAPIResponse()
+        let apiResponse = MovieAPI.searchbyGenre(genre: genre)
             .share()
             .observe(on: MainScheduler.instance)
         
