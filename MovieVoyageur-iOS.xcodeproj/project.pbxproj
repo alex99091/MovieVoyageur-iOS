@@ -50,6 +50,9 @@
 		260A2EEC29B6895800B6E018 /* RecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A2EEB29B6895800B6E018 /* RecentSearchCell.swift */; };
 		260A2EEE29B68D7100B6E018 /* RecentSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 260A2EED29B68D7100B6E018 /* RecentSearchCell.xib */; };
 		260A2EF029B6967900B6E018 /* LikeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A2EEF29B6967900B6E018 /* LikeListViewController.swift */; };
+		260A2EF229B69E3500B6E018 /* MovieIdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A2EF129B69E3500B6E018 /* MovieIdData.swift */; };
+		260A2EF429B6A9B500B6E018 /* LikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260A2EF329B6A9B500B6E018 /* LikeCell.swift */; };
+		260A2EF629B6B1A600B6E018 /* LikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 260A2EF529B6B1A600B6E018 /* LikeCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		260A2EEB29B6895800B6E018 /* RecentSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCell.swift; sourceTree = "<group>"; };
 		260A2EED29B68D7100B6E018 /* RecentSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentSearchCell.xib; sourceTree = "<group>"; };
 		260A2EEF29B6967900B6E018 /* LikeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeListViewController.swift; sourceTree = "<group>"; };
+		260A2EF129B69E3500B6E018 /* MovieIdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieIdData.swift; sourceTree = "<group>"; };
+		260A2EF329B6A9B500B6E018 /* LikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeCell.swift; sourceTree = "<group>"; };
+		260A2EF529B6B1A600B6E018 /* LikeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikeCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +178,7 @@
 				260A2ED729B5EDD500B6E018 /* SpokenLanguage.swift */,
 				260A2EDB29B6261D00B6E018 /* BelongsToCollection.swift */,
 				260A2EE329B6627900B6E018 /* MovieSearchTerm.swift */,
+				260A2EF129B69E3500B6E018 /* MovieIdData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +214,8 @@
 				260A2EE529B6795900B6E018 /* SearchHeaderView.swift */,
 				260A2EEB29B6895800B6E018 /* RecentSearchCell.swift */,
 				260A2EED29B68D7100B6E018 /* RecentSearchCell.xib */,
+				260A2EF329B6A9B500B6E018 /* LikeCell.swift */,
+				260A2EF529B6B1A600B6E018 /* LikeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +311,7 @@
 				260A2EC029B5394100B6E018 /* LaunchScreen.storyboard in Resources */,
 				260A2EC129B5394100B6E018 /* Main.storyboard in Resources */,
 				260A2E9729B5378B00B6E018 /* Sunflower-Light.ttf in Resources */,
+				260A2EF629B6B1A600B6E018 /* LikeCell.xib in Resources */,
 				260A2E9829B5378B00B6E018 /* Sunflower-Bold.ttf in Resources */,
 				260A2EBB29B5392F00B6E018 /* BannerCell.xib in Resources */,
 				260A2E8329B536FA00B6E018 /* Assets.xcassets in Resources */,
@@ -331,6 +341,7 @@
 				260A2ECE29B5E21F00B6E018 /* MovieListHeaderView.swift in Sources */,
 				260A2EA329B5387800B6E018 /* ApiKey.swift in Sources */,
 				260A2EE029B65DAB00B6E018 /* SearchCell.swift in Sources */,
+				260A2EF229B69E3500B6E018 /* MovieIdData.swift in Sources */,
 				260A2EEC29B6895800B6E018 /* RecentSearchCell.swift in Sources */,
 				260A2EB929B5392F00B6E018 /* MovieCell.swift in Sources */,
 				260A2EE429B6627900B6E018 /* MovieSearchTerm.swift in Sources */,
@@ -345,6 +356,7 @@
 				260A2EA529B5388C00B6E018 /* Nibbed.swift in Sources */,
 				260A2ED029B5ED1900B6E018 /* MovieDetail.swift in Sources */,
 				260A2EA129B5383100B6E018 /* HomeViewController.swift in Sources */,
+				260A2EF429B6A9B500B6E018 /* LikeCell.swift in Sources */,
 				260A2E9B29B537DD00B6E018 /* MovieAPI.swift in Sources */,
 				260A2EE629B6795900B6E018 /* SearchHeaderView.swift in Sources */,
 			);

@@ -181,6 +181,12 @@ extension SearchViewController: UICollectionViewDelegate {
             if let inputString = searchTermList[indexPath.item] {
                 fetchBySearchTerm(inputString)
             }
+        } else if indexPath.section == 1 {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+            movieDetailViewController.movieId = movieResult[indexPath.item].id!
+            self.navigationController?.pushViewController(movieDetailViewController, animated: true)
+            
         }
     }
 }

@@ -296,8 +296,6 @@ extension HomeViewController: UICollectionViewDelegate {
         } else if indexPath.section == 3 {
             movieDetailViewController.movieId = topRatedMovieList.results![indexPath.item].id!
         }
-        
-        
     }
 }
 
