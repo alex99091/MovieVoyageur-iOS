@@ -1,2 +1,2 @@
 # MovieMatch-iOS
-using Naver Open API + RxSwift
+using TheMovieDB Open API + RxSwift
