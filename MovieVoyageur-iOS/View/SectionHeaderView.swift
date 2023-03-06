@@ -72,7 +72,5 @@ class SectionHeaderView: UICollectionReusableView, ReuseIdentifiable {
             movieListViewController.titleText = "가장 평점높은 영화"
         default: print("섹션을 알 수 없습니다.")
         }
-        
-        
     }
 }

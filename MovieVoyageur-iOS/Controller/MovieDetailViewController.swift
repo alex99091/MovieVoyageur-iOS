@@ -43,8 +43,6 @@ class MovieDetailViewController: UIViewController {
     func fetchData() {
         let urlPath = "https://image.tmdb.org/t/p/w500" + movieDetail.posterPath!
         movieImageView.kf.setImage(with: URL(string: urlPath))
-//        movieImageView.contentMode = .scaleToFill
-//        movieImageView.clipsToBounds = true
         genreLabel.text = movieDetail.genres![0].name
         titleLabel.text = movieDetail.title
         nationLabel.text = movieDetail.productionCountries![0].name

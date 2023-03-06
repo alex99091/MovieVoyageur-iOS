@@ -109,5 +109,11 @@ extension MovieListViewController: UICollectionViewDataSource {
 }
 
 extension MovieListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        self.navigationController?.pushViewController(movieDetailViewController, animated: true)
+        movieDetailViewController.movieId = movieResult[indexPath.item].id!
+    }
 }
 

@@ -11,6 +11,7 @@ import RxCocoa
 
 enum MovieAPI {
     static let baseUrl = "https://api.themoviedb.org/3/movie"
+    static let baseSearchUrl = "https://api.themoviedb.org/3/search/movie"
     static let supportingUrl = "&language=en-US&page=1"
     
     enum ApiError: Error {
@@ -200,6 +201,44 @@ extension MovieAPI {
                     let decoder = JSONDecoder()
                     do {
                         let result = try decoder.decode(MovieDetail.self, from: data)
+                        return .success(result)
+                    } catch {
+                        return .failure(ApiError.decodingError)
+                    }
+                } else if response.statusCode == 401 {
+                    return .failure(ApiError.unAuthorizedKey)
+                } else {
+                    return .failure(ApiError.networkError)
+                }
+            }
+            .catch { error in
+                return Observable.just(.failure(ApiError.unknownError(error)))
+            }
+    }
+    
+    // 영화 검색하기
+    static func searchMovie(_ searchTerm: String) -> Observable<Result<MovieSearchTerm, ApiError>> {
+        
+        guard let apiKey: String = Bundle.main.APIKey else { return Observable.just(Result.failure(.unAuthorizedKey)) }
+        
+        let apiString = "?api_key=" + apiKey
+        let query = "&query=\(searchTerm)"
+        let urlString = baseSearchUrl + apiString + query
+        print(urlString)
+        
+        guard let completedUrl = URL(string: urlString) else {
+            return Observable.just(.failure(ApiError.invalidURL))
+        }
+        
+        var urlRequest = URLRequest(url: completedUrl)
+        urlRequest.httpMethod = "GET"
+        
+        return URLSession.shared.rx.response(request: urlRequest)
+            .map { response, data in
+                if response.statusCode == 200 {
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(MovieSearchTerm.self, from: data)
                         return .success(result)
                     } catch {
                         return .failure(ApiError.decodingError)

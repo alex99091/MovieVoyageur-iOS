@@ -11,7 +11,7 @@ import Foundation
 struct MovieDetail: Codable {
     let adult: Bool?
     let backdropPath: String?
-    let belongsToCollection: String?
+    let belongsToCollection: BelongsToCollection?
     let budget: Int?
     let genres: [Genre]?
     let homepage: String?
@@ -51,7 +51,7 @@ struct MovieDetail: Codable {
     
     init(adult: Bool? = nil,
          backdropPath: String? = nil,
-         belongsToCollection: String? = nil,
+         belongsToCollection: BelongsToCollection? = nil,
          budget: Int? = nil,
          genres: [Genre]? = nil,
          homepage: String? = nil,

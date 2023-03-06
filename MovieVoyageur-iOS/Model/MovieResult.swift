@@ -34,9 +34,10 @@ struct MovieResult: Codable {
         case title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        
     }
     
-    init(adult: Bool?, backdropPath: String?, genreIDS: [Int]?, id: Int?, originalLanguage: String?, originalTitle: String?, overview: String?, popularity: Double?, posterPath: String?, releaseDate: String?, title: String?, video: Bool?, voteAverage: Double?, voteCount: Int?) {
+    init(adult: Bool? = nil, backdropPath: String? = nil, genreIDS: [Int]? = nil, id: Int? = nil, originalLanguage: String? = nil, originalTitle: String? = nil, overview: String? = nil, popularity: Double? = nil, posterPath: String? = nil, releaseDate: String? = nil, title: String? = nil, video: Bool? = nil, voteAverage: Double? = nil, voteCount: Int? = nil) {
         self.adult = adult
         self.backdropPath = backdropPath
         self.genreIDS = genreIDS
