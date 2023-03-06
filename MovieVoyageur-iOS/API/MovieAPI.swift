@@ -178,5 +178,42 @@ extension MovieAPI {
             }
     }
     
+    // 영화 디테일보기
+    static func fetchMovieDetail(_ movieId: Int) -> Observable<Result<MovieDetail, ApiError>> {
+        
+        guard let apiKey: String = Bundle.main.APIKey else { return Observable.just(Result.failure(.unAuthorizedKey)) }
+        
+        let query = "/\(movieId)"
+        let apiString = "?api_key=" + apiKey
+        let urlString = baseUrl + query + apiString + supportingUrl
+        
+        guard let completedUrl = URL(string: urlString) else {
+            return Observable.just(.failure(ApiError.invalidURL))
+        }
+        
+        var urlRequest = URLRequest(url: completedUrl)
+        urlRequest.httpMethod = "GET"
+        
+        return URLSession.shared.rx.response(request: urlRequest)
+            .map { response, data in
+                if response.statusCode == 200 {
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(MovieDetail.self, from: data)
+                        return .success(result)
+                    } catch {
+                        return .failure(ApiError.decodingError)
+                    }
+                } else if response.statusCode == 401 {
+                    return .failure(ApiError.unAuthorizedKey)
+                } else {
+                    return .failure(ApiError.networkError)
+                }
+            }
+            .catch { error in
+                return Observable.just(.failure(ApiError.unknownError(error)))
+            }
+    }
+    
 }
 

@@ -21,12 +21,13 @@ class HomeViewController: UIViewController {
     var nowplayingMovieList = MovieListResponse<MovieDate, MovieResult>()
     var popularMovieList = MovieListResponseWithoutDate<MovieResult>()
     var topRatedMovieList = MovieListResponseWithoutDate<MovieResult>()
-    
     let imageUrl = "https://image.tmdb.org/t/p/w500"
+    let valueStr = "평점: "
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "MovieVoyageur-iOS"
         homeCollectionView.dataSource = self
         homeCollectionView.delegate = self
         registerCellAndHeaderAndLayout()
@@ -66,16 +67,16 @@ class HomeViewController: UIViewController {
                                                                subitems: [item])
                 group.interItemSpacing = groupSpacing
                 let section = NSCollectionLayoutSection(group: group)
-                section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 10, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
                 return section
             } else if sectionIndex == 1 {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3),
                                                       heightDimension: .fractionalWidth(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                       heightDimension: .fractionalWidth(1/3 * 1.5 + 0.1))
+                                                       heightDimension: .fractionalWidth(1/3 * 1.5 + 0.05))
                 let groupSpacing = NSCollectionLayoutSpacing.fixed(0)
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                                subitems: [item])
@@ -95,7 +96,7 @@ class HomeViewController: UIViewController {
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/4),
                                                       heightDimension: .fractionalWidth(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 5)
                 let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                        heightDimension: .fractionalWidth(1/4 * 1.5 + 0.1))
                 let groupSpacing = NSCollectionLayoutSpacing.fixed(0)
@@ -185,7 +186,6 @@ class HomeViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -225,7 +225,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if let movieResult: [MovieResult] = nowplayingMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
-                cell.configureDirector(with: String(movieResult[indexPath.item].voteAverage!))
+                cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {
                 print("nowplayingMovieResult의 데이터가 없습니다.")
             }
@@ -234,7 +234,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if let movieResult: [MovieResult] = popularMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
-                cell.configureDirector(with: String(movieResult[indexPath.item].voteAverage!))
+                cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {
                 print("popularMovieList의 데이터가 없습니다.")
             }
@@ -243,7 +243,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if let movieResult: [MovieResult] = topRatedMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
-                cell.configureDirector(with: String(movieResult[indexPath.item].voteAverage!))
+                cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {
                 print("topRatedMovieList의 데이터가 없습니다.")
             }
@@ -258,12 +258,18 @@ extension HomeViewController: UICollectionViewDataSource {
         case UICollectionView.elementKindSectionHeader:
             let headerView = homeCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseIdentifier, for: indexPath) as! SectionHeaderView
             if indexPath.section == 1 {
+                headerView.currentSectionIndex = indexPath.section
+                headerView.parentViewController = self
                 headerView.configureStyle(with: "현재 상영중")
                 return headerView
             } else if indexPath.section == 2 {
+                headerView.currentSectionIndex = indexPath.section
+                headerView.parentViewController = self
                 headerView.configureStyle(with: "가장 인기있는")
                 return headerView
             } else if indexPath.section == 3 {
+                headerView.currentSectionIndex = indexPath.section
+                headerView.parentViewController = self
                 headerView.configureStyle(with: "가장 평점높은")
                 return headerView
             } else {
@@ -276,7 +282,22 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let movieDetailViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+        self.navigationController?.pushViewController(movieDetailViewController, animated: true)
+        
+        if indexPath.section == 0 {
+            movieDetailViewController.movieId = upcomingMovieList.results![indexPath.item].id!
+        } else if indexPath.section == 1 {
+            movieDetailViewController.movieId = nowplayingMovieList.results![indexPath.item].id!
+        } else if indexPath.section == 2 {
+            movieDetailViewController.movieId = popularMovieList.results![indexPath.item].id!
+        } else if indexPath.section == 3 {
+            movieDetailViewController.movieId = topRatedMovieList.results![indexPath.item].id!
+        }
+        
+        
+    }
 }
-
 
