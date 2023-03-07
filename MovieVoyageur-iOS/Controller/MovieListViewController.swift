@@ -94,6 +94,7 @@ extension MovieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = movieListCollectionView.dequeueReusableCell(withReuseIdentifier: MovieCell.reuseIdentifier, for: indexPath) as! MovieCell
         cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
+        cell.movieImage.layer.cornerRadius = 5
         cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
         cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
         return cell

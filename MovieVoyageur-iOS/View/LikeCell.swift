@@ -21,22 +21,21 @@ class LikeCell: UICollectionViewCell, ReuseIdentifiable {
         if let movieImage = movieImage {
             movieImage.kf.setImage(with: imageURL)
             movieImage.contentMode = .scaleToFill
-            movieImage.clipsToBounds = true
         }
     }
     
     func configureTitle(_ input: String){
         if let titleLabel = titleLabel {
             titleLabel.text = input
-            titleLabel.font = UIFont(name: "Sunflower-Medium", size: 18.0)
+            titleLabel.font = UIFont(name: "Sunflower-Medium", size: 15.0)
             titleLabel.textColor = .black
         }
     }
     func configureGenre(_ input: String){
         if let genreLabel = genreLabel {
             genreLabel.text = input
-            genreLabel.font = UIFont(name: "Sunflower-Light", size: 15.0)
-            genreLabel.textColor = .systemGray3
+            genreLabel.font = UIFont(name: "Sunflower-Light", size: 12.0)
+            genreLabel.textColor = .systemGray4
         }
     }
     

@@ -30,9 +30,8 @@ class SearchHeaderView: UICollectionReusableView, ReuseIdentifiable {
         addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        button.backgroundColor = .red
         button.setTitle("전체 삭제", for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.red, for: .normal)
         button.titleLabel?.font = UIFont(name: "Sunflower-Medium", size: 18.0)
         button.layer.cornerRadius = 5
         addSubview(button)

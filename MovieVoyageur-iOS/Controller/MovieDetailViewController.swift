@@ -26,16 +26,27 @@ class MovieDetailViewController: UIViewController {
     // MARK: - Property
     let disposeBag = DisposeBag()
     var movieId = 0
-    var movieIdList = [Int]()
     var movieDetail = MovieDetail()
+    var movieData = MovieIdData()
+    var movieIdLists = [Int]()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchMovieDetail()
         styleLabels()
+        loadMovieIdListsFromUserDefaults()
+        heartButtonStyle()
     }
     // MARK: - Method
+    // userDefaults를 로드하는 ㄹunction
+    func loadMovieIdListsFromUserDefaults() {
+        if let savedData = UserDefaults.standard.data(forKey: "movieIdList"),
+           let loadedData = try? PropertyListDecoder().decode(MovieIdData.self, from: savedData) {
+            movieData.movieIdList = loadedData.movieIdList ?? []
+            print("로드된 데이터를 확인 - \(String(describing: movieData.movieIdList))")
+        }
+    }
     // userdefaults에 저장해주는 function
     func saveMovieIdToUserDefaults(_ willSaveData: MovieIdData) {
         UserDefaults.standard.set(try? PropertyListEncoder().encode(willSaveData), forKey: "movieIdList")
@@ -56,12 +67,40 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    func heartButtonStyle() {
+        if movieData.movieIdList?.contains(movieId) == true {
+            heartButton.isSelected = true
+        }
+        var configuration = UIButton.Configuration.filled()
+           configuration.baseBackgroundColor = UIColor.white
+        if heartButton.isSelected {
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            heartButton.tintColor = UIColor.red
+            heartButton.configuration?.baseBackgroundColor = UIColor.white
+        } else {
+            heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            heartButton.tintColor = UIColor.red
+            heartButton.backgroundColor = UIColor.white
+        }
+    }
+    
     func fetchData() {
-        let urlPath = "https://image.tmdb.org/t/p/w500" + movieDetail.posterPath!
-        movieImageView.kf.setImage(with: URL(string: urlPath))
-        genreLabel.text = movieDetail.genres![0].name
+        if let posterPathUrl = movieDetail.posterPath {
+            let urlPath = "https://image.tmdb.org/t/p/w500" + posterPathUrl
+            movieImageView.kf.setImage(with: URL(string: urlPath))
+            movieImageView.layer.cornerRadius = 5
+        }
+        if movieDetail.genres?.count ?? 0 > 1 {
+            if let genreText = movieDetail.genres?[0].name {
+                genreLabel.text = genreText
+            }
+        }
         titleLabel.text = movieDetail.title
-        nationLabel.text = movieDetail.productionCountries![0].name
+        if movieDetail.productionCountries?.count ?? 0 > 1 {
+            if let countryText = movieDetail.productionCountries?[0].name {
+                nationLabel.text = countryText
+            }
+        }
         runtimeLabel.text = String(movieDetail.runtime!) + "분"
         voteLabel.text = String(movieDetail.voteAverage!)
         summaryLabel.text = movieDetail.overview
@@ -90,27 +129,23 @@ class MovieDetailViewController: UIViewController {
     @IBAction func heartButtonTouched(_ sender: Any) {
         guard let heartButton = sender as? UIButton else { return }
         heartButton.isSelected = !heartButton.isSelected
-
+        
+        loadMovieIdListsFromUserDefaults()
+        
         if heartButton.isSelected {
-            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            heartButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
             heartButton.tintColor = UIColor.red
-            movieIdList.append(movieId)
-            let data = MovieIdData(movieIdList: movieIdList)
-            saveMovieIdToUserDefaults(data)
+            heartButton.configuration?.baseBackgroundColor = UIColor.white
+            movieData.movieIdList?.append(movieId)
+            saveMovieIdToUserDefaults(movieData)
         } else {
             heartButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            movieIdList.removeAll(where: { $0 == movieId })
+            heartButton.tintColor = UIColor.black
+            heartButton.backgroundColor = UIColor.white
+            movieData.movieIdList?.removeAll(where: { $0 == movieId })
             removeMovieIdFromUserDefaults(movieId: movieId)
         }
         
-        // 저장된 값을 출력
-        if let savedData = UserDefaults.standard.data(forKey: "movieIdList"),
-           let loadedData = try? PropertyListDecoder().decode(MovieIdData.self, from: savedData),
-           let movieIdList = loadedData.movieIdList {
-            print("저장성공: \(movieIdList)")
-        } else {
-            print("저장실패")
-        }
     }
     
 }

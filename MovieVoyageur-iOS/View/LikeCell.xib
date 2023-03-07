@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,38 +23,28 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="bdD-iq-CeV">
-                        <rect key="frame" x="169" y="10" width="59" height="144"/>
+                        <rect key="frame" x="169" y="25" width="59" height="114"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영화제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btX-tv-OQx">
-                                <rect key="frame" x="0.0" y="0.0" width="59" height="72"/>
+                                <rect key="frame" x="0.0" y="0.0" width="59" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장르" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9D-NQ-mpq">
-                                <rect key="frame" x="0.0" y="72" width="29.5" height="72"/>
+                                <rect key="frame" x="0.0" y="57" width="29.5" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ldX-lh-zqJ">
-                        <rect key="frame" x="312" y="60" width="63" height="44"/>
-                        <color key="tintColor" systemColor="systemRedColor"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="tinted" image="heart.fill" catalog="system">
-                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25"/>
-                        </buttonConfiguration>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="LBM-ko-JgV" firstAttribute="leading" secondItem="PVB-xQ-UL3" secondAttribute="leading" constant="10" id="8OX-FJ-nax"/>
                     <constraint firstItem="LBM-ko-JgV" firstAttribute="top" secondItem="PVB-xQ-UL3" secondAttribute="top" constant="10" id="Hd6-yu-hf8"/>
-                    <constraint firstItem="bdD-iq-CeV" firstAttribute="top" secondItem="LBM-ko-JgV" secondAttribute="top" id="RZ3-wQ-SWh"/>
-                    <constraint firstItem="ldX-lh-zqJ" firstAttribute="centerY" secondItem="bdD-iq-CeV" secondAttribute="centerY" id="U8M-XU-U6e"/>
-                    <constraint firstItem="bdD-iq-CeV" firstAttribute="bottom" secondItem="LBM-ko-JgV" secondAttribute="bottom" id="csP-bN-J2n"/>
-                    <constraint firstAttribute="trailing" secondItem="ldX-lh-zqJ" secondAttribute="trailing" constant="20" id="dHL-rg-umi"/>
+                    <constraint firstItem="bdD-iq-CeV" firstAttribute="top" secondItem="LBM-ko-JgV" secondAttribute="top" constant="15" id="RZ3-wQ-SWh"/>
+                    <constraint firstItem="LBM-ko-JgV" firstAttribute="bottom" secondItem="bdD-iq-CeV" secondAttribute="bottom" constant="15" id="csP-bN-J2n"/>
                     <constraint firstAttribute="bottom" secondItem="LBM-ko-JgV" secondAttribute="bottom" constant="10" id="vpZ-He-lWp"/>
                     <constraint firstItem="bdD-iq-CeV" firstAttribute="leading" secondItem="LBM-ko-JgV" secondAttribute="trailing" constant="15" id="zYl-yS-3xG"/>
                 </constraints>
@@ -69,10 +58,4 @@
             <point key="canvasLocation" x="139.85507246376812" y="62.946428571428569"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -217,6 +217,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = homeCollectionView.dequeueReusableCell(withReuseIdentifier: BannerCell.reuseIdentifier, for: indexPath) as! BannerCell
             if let movieResult: [MovieResult] = upcomingMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
+                cell.movieImage.layer.cornerRadius = 5
             } else {
                 print("upcomingMovieResult의 데이터가 없습니다.")
             }
@@ -224,6 +225,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 1 {
             if let movieResult: [MovieResult] = nowplayingMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
+                cell.movieImage.layer.cornerRadius = 5
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
                 cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {
@@ -233,6 +235,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 2 {
             if let movieResult: [MovieResult] = popularMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
+                cell.movieImage.layer.cornerRadius = 5
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
                 cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {
@@ -242,6 +245,7 @@ extension HomeViewController: UICollectionViewDataSource {
         } else if indexPath.section == 3 {
             if let movieResult: [MovieResult] = topRatedMovieList.results {
                 cell.configureImage(with: URL(string: imageUrl + movieResult[indexPath.item].posterPath!))
+                cell.movieImage.layer.cornerRadius = 5
                 cell.configureTitle(with: movieResult[indexPath.item].originalTitle)
                 cell.configureDirector(with: valueStr + String(movieResult[indexPath.item].voteAverage!))
             } else {

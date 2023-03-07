@@ -158,6 +158,7 @@ extension SearchViewController: UICollectionViewDataSource {
             }
             if let posterPath = movieResult[indexPath.item].posterPath {
                 cell.configureImage(with: URL(string:"https://image.tmdb.org/t/p/w500" + posterPath))
+                cell.movieImage.layer.cornerRadius = 5
             }
             return cell
         }

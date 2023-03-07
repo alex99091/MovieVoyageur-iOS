@@ -12,8 +12,9 @@ import RxCocoa
 enum MovieAPI {
     static let baseUrl = "https://api.themoviedb.org/3/movie"
     static let baseSearchUrl = "https://api.themoviedb.org/3/search/movie"
+    static let baseGenreUrl = "https://api.themoviedb.org/3/discover/movie"
     static let supportingUrl = "&language=en-US&page=1"
-    
+        
     enum ApiError: Error {
         case invalidURL
         case unAuthorizedKey
@@ -224,7 +225,44 @@ extension MovieAPI {
         let apiString = "?api_key=" + apiKey
         let query = "&query=\(searchTerm)"
         let urlString = baseSearchUrl + apiString + query
-        print(urlString)
+        
+        guard let completedUrl = URL(string: urlString) else {
+            return Observable.just(.failure(ApiError.invalidURL))
+        }
+        
+        var urlRequest = URLRequest(url: completedUrl)
+        urlRequest.httpMethod = "GET"
+        
+        return URLSession.shared.rx.response(request: urlRequest)
+            .map { response, data in
+                if response.statusCode == 200 {
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(MovieSearchTerm.self, from: data)
+                        return .success(result)
+                    } catch {
+                        return .failure(ApiError.decodingError)
+                    }
+                } else if response.statusCode == 401 {
+                    return .failure(ApiError.unAuthorizedKey)
+                } else {
+                    return .failure(ApiError.networkError)
+                }
+            }
+            .catch { error in
+                return Observable.just(.failure(ApiError.unknownError(error)))
+            }
+    }
+    
+    // 장르로 영화 리스트가져오기
+    static func fetchByGenre(_ genreId: Int) -> Observable<Result<MovieSearchTerm, ApiError>> {
+        
+        guard let apiKey: String = Bundle.main.APIKey else { return Observable.just(Result.failure(.unAuthorizedKey)) }
+        
+        let apiString = "?api_key=" + apiKey
+        let extraUrl = "&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&primary_release_date.gte=1990-01-01&primary_release_date.lte=1999-12-31&vote_average.gte=6"
+        let query = "&with_genres=\(genreId)"
+        let urlString = baseGenreUrl + apiString + extraUrl + query
         
         guard let completedUrl = URL(string: urlString) else {
             return Observable.just(.failure(ApiError.invalidURL))
