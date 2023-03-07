@@ -23,7 +23,7 @@ class GenreCell: UICollectionViewCell, ReuseIdentifiable {
         if let genreLabel = genreLabel {
             genreLabel.text = input
             genreLabel.font = UIFont(name: "Sunflower-Medium", size: 16.0)
-            genreLabel.textColor = .orange
+            genreLabel.textColor = .systemBlue
         }
     }
     

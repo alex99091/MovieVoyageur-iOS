@@ -17,7 +17,7 @@ class GenreViewContoller: UIViewController {
     
     // MARK: - Property
     let disposeBag = DisposeBag()
-    let genreList = ["Action":28, "Adventure":12, "Animation":16, "Comedy":35, "Crime":80, "Documentary":99, "Drama":18,
+    var genreList = ["Action":28, "Adventure":12, "Animation":16, "Comedy":35, "Crime":80, "Documentary":99, "Drama":18,
                      "Family":10751, "Fantasy":14, "History":36, "Horror":27, "Music":10402,"Mystery":9648,"Romance":10749,
                      "Science Fiction": 878, "Thriller":53, "War":10752]
     var genreListKeys = [String]()
@@ -28,6 +28,7 @@ class GenreViewContoller: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortDictionary()
         genreCollectionView.register(GenreCell.uinib, forCellWithReuseIdentifier: GenreCell.reuseIdentifier)
         genreCollectionView.register(SearchCell.uinib, forCellWithReuseIdentifier: SearchCell.reuseIdentifier)
         genreCollectionView.dataSource = self
@@ -37,6 +38,11 @@ class GenreViewContoller: UIViewController {
     }
     
     // MARK: - Method
+    func sortDictionary() {
+        let sortedGenres = genreList.sorted(by: { $0.key < $1.key })
+        let sortedGenreList = Dictionary(uniqueKeysWithValues: sortedGenres.map { ($0.key, $0.value) })
+        genreList = sortedGenreList
+    }
     // 장르Id로 장르가져오기
     func fetchByGenre(_ genreId: Int) {
         MovieAPI.fetchByGenre(genreId)
@@ -114,11 +120,11 @@ extension GenreViewContoller: UICollectionViewDataSource {
             cell.configureGenreTitle(genreListKeys[indexPath.item])
             cell.backgroundColor = UIColor.white
             cell.layer.cornerRadius = 10
-            cell.layer.borderColor = UIColor.orange.cgColor
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
             cell.layer.borderWidth = 1
             
             if indexPath.item == selectedIndex {
-                cell.backgroundColor = UIColor.orange
+                cell.backgroundColor = UIColor.systemBlue
                 cell.layer.cornerRadius = 10
                 cell.genreLabel.textColor = .white
             }
