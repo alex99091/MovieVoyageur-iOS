@@ -10,6 +10,7 @@
 
 - [App Apperance](https://github.com/alex99091/MovieVoyageur-iOS#app-apperance)
 - [앱 개요](https://github.com/alex99091/MovieVoyageur-iOS#앱-개요)
+- [디렉터리 구조](https://github.com/alex99091/MovieVoyageur-iOS#Directory-구조)
 - [Compositional Layout이란??](https://github.com/alex99091/MovieVoyageur-iOS#Compositional-Layout이란??)
 
 ## App Apperance
@@ -37,6 +38,38 @@
 &nbsp; 이 샘플 앱은 [TMDB API](https://developers.themoviedb.org/3)를 사용하여 `개봉 예정`/`현재 상영중`/`높은 평점`/`인기있는` 영화 정보를 볼 수 있는 `앱`입니다. 
 
 해당 프로젝트는 영화정보의 `CRUD` 기능을 구현하기 위하여 `UIKit / Storyboard` 기반으로 `Compositional Layout`을 사용한 다양한 화면 구성, 코드의 재사용성을 높이기 위한 View/Cell등의 상속, `Rxswift`를 활용한 `데이터 전달` 등을 포함하고 있습니다.
+
+### Directory 구조
+```
+🗂 Model
+    📄 MovieResponse, MovieResult, MovieDetail, MovieIdData
+🗂 API
+    📄 MovieAPI
+🗂 View
+    🗂 Common
+        📄 Main.storyboard, MovieCell, MovieCell
+    🗂 Home
+        📄 BannerCell, SectionHeaderView, MovieListHeaderView
+    🗂 Search
+        📄 SearchCell, RecentSearchCell, SearchHeaderView
+    🗂 Genre
+        📄 GenreCell
+    🗂 Like
+        📄 LikeCell
+🗂 Controller
+    🗂 Common
+        📄 MainTabbarVC, MovieDetailVC, AppDelegate, SceneDelegate
+    🗂 Home
+        📄 HomeVC, HomeListVC
+    🗂 Search
+        📄 SearchVC
+    🗂 Genre
+        📄 GenreVC
+    🗂 Like
+        📄 LikeListVC
+🗂 Extension
+    📄 APIKey, Nibbed, ReuseIdentifiable, UIImage
+```
 
 ### Compositional Layout이란??
 
