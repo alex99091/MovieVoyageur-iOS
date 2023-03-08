@@ -11,7 +11,7 @@
 - [App Apperance](https://github.com/alex99091/MovieVoyageur-iOS#app-apperance)
 - [앱 개요](https://github.com/alex99091/MovieVoyageur-iOS#앱-개요)
 - [디렉터리 구조](https://github.com/alex99091/MovieVoyageur-iOS#Directory-구조)
-- [Compositional Layout이란??](https://github.com/alex99091/MovieVoyageur-iOS#Compositional-Layout이란??)
+- [Compositional Layout이란??](https://github.com/alex99091/MovieVoyageur-iOS#Compositional-Layout)
 
 ## App Apperance
 
@@ -71,7 +71,7 @@
     📄 APIKey, Nibbed, ReuseIdentifiable, UIImage
 ```
 
-### Compositional Layout이란??
+### Compositional Layout
 
 &nbsp; `Compositional Layout`은 `UICollectionView`에서 사용할 수 있는 유연하고 강력한 `레이아웃 시스템`이며, 이를 사용하여 `컬렉션 뷰`의 `항목`을 `그룹`화하고 `배치`하는 방법을 `정의`할 수 있습니다.
 
