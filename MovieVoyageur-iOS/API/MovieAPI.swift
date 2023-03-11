@@ -35,7 +35,6 @@ enum MovieAPI {
 }
 
 extension MovieAPI {
-    
     // 곧 개봉할 영화 목록받기
     static func fetchUpcoming() -> Observable<Result<MovieListResponse<MovieDate, MovieResult>, ApiError>> {
         
